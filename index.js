@@ -19,7 +19,7 @@ app.use(session({
 app.set('view engine', 'pug');
 
 // Multer to handle file uploads.
-const upload = multer({ dest: 'uploads/' });
+const upload = multer();
 
 const callbackPath = '/auth/twitter';
 const callbackUrl = `http://localhost:${port}${callbackPath}`;
@@ -100,7 +100,7 @@ app.post('/tweet', upload.single('image'), async (req, res) => {
   let response;
 
   if (image) {
-    const mediaId = await client.v1.uploadMedia(image.path, { mimeType: image.mimetype });
+    const mediaId = await client.v1.uploadMedia(image.buffer, { mimeType: image.mimetype });
 
     // This throws 403...
     // tweet = await client.v1.tweet(status, { media_ids: [mediaId] });
