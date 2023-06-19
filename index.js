@@ -19,7 +19,7 @@ app.use(session({
 app.set('view engine', 'pug');
 
 // Multer to handle file uploads.
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: 'uploads/' });
 
 const callbackPath = '/auth/twitter';
 const callbackUrl = `http://localhost:${port}${callbackPath}`;
