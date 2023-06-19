@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  if user
+    h2
+      img(src=user.profile_image_url_https)
+      |  Hello #{user.name}! (@#{user.screen_name})
+    p
+      a(href="/logout") Logout
+
+
+    form(action="/tweet", method="post" enctype="multipart/form-data", style="margin-top: 40px; margin-bottom: 40px; border: 1px solid #ccc; padding: 10px;")
+      h3 Tweet something:
+      textarea(name="status", rows="3", cols="60", placeholder="What's happening?", style="margin-bottom: 10px;")
+      br
+      input(type="file", name="image", accept="image/*", style="margin-bottom: 10px;")
+      br
+      input(type="submit", value="Tweet")
+
+    if tweet
+      div(style="border: 1px solid #ccc; padding: 10px;")
+        h3 Tweet posted:
+        p #{tweet.text}
+        p
+          a(href=`https://twitter.com/${user.screen_name}/status/${tweet.id}`, target="_blank") View it on Twitter
+
+    p ---------------------------------------------------------
+
+    p User object:
+    pre #{JSON.stringify(user, null, 2)}
+
+  else
+    h2 You are not logged in
+    a(href="/auth") Authorize
