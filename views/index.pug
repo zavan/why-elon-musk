@@ -23,6 +23,11 @@ block content
       div(style="border: 1px solid #ccc; padding: 10px;")
         h3 Last tweet:
         p= user.status.full_text
+        if user.status.entities.media
+          for media in user.status.entities.media
+            if media.type == 'photo'
+              a(href=media.expanded_url, target="_blank")
+                img(src=media.media_url_https)
         p= user.status.created_at
         p Retweets: #{user.status.retweet_count}
         p Likes: #{user.status.favorite_count}
