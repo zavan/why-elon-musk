@@ -8,6 +8,7 @@
     "start": "node index.js"
   },
   "author": "Felipe Zavan <felipe@zavan.me>",
+  "repository": "github:zavan/why-elon-musk",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.3.1",

@@ -6,14 +6,11 @@ import session from 'express-session';
 import multer from 'multer';
 
 const app = express();
-const port = 8888;
-
-// Parse URL-encoded bodies (as sent by HTML forms).
-// app.use(express.urlencoded({ extended: true }));
+const port = process.env.PORT || 3000;
 
 // To store tokens in the session (in-memory, by default).
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
 }));
