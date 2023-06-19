@@ -8,7 +8,6 @@ block content
     p
       a(href="/logout") Logout
 
-
     form(action="/tweet", method="post" enctype="multipart/form-data", style="margin-top: 40px; margin-bottom: 40px; border: 1px solid #ccc; padding: 10px;")
       h3 Tweet something:
       textarea(name="status", rows="3", cols="60", placeholder="What's happening?", style="margin-bottom: 10px;")
@@ -17,12 +16,15 @@ block content
       br
       input(type="submit", value="Tweet")
 
-    if tweet
+    if user.status
       div(style="border: 1px solid #ccc; padding: 10px;")
-        h3 Tweet posted:
-        p #{tweet.text}
+        h3 Last tweet:
+        p= user.status.full_text
+        p= user.status.created_at
+        p Retweets: #{user.status.retweet_count}
+        p Likes: #{user.status.favorite_count}
         p
-          a(href=`https://twitter.com/${user.screen_name}/status/${tweet.id}`, target="_blank") View it on Twitter
+          a(href=`https://twitter.com/${user.screen_name}/status/${user.status.id_str}`, target="_blank") View it on Twitter
 
     p ---------------------------------------------------------
 

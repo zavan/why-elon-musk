@@ -48,16 +48,7 @@ app.get('/', async (req, res) => {
     // This too...
     // const userTimeline = await client.v2.userTimeline(user.id);
 
-    let tweet;
-
-    if (req.query.tweetedId) {
-      tweet = {
-        id: req.query.tweetedId,
-        text: req.query.tweetedText,
-      };
-    }
-
-    res.render('index', { user, tweet });
+    res.render('index', { user });
   } else {
     res.render('index');
   }
@@ -120,9 +111,9 @@ app.post('/tweet', upload.single('image'), async (req, res) => {
     response = await client.v2.tweet(status);
   }
 
-  const tweet = response.data;
+  console.log('Post tweet response:', response);
 
-  res.redirect(`/?tweetedText=${tweet.text}&tweetedId=${tweet.id}`);
+  res.redirect('/');
 });
 
 app.get('/logout', async (req, res) => {
