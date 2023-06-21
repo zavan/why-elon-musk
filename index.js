@@ -1,9 +1,12 @@
 import 'dotenv/config';
 
-import { TwitterApi } from 'twitter-api-v2';
+import { TwitterApi, TwitterApiV2Settings } from 'twitter-api-v2';
 import express from 'express';
 import session from 'express-session';
 import multer from 'multer';
+
+// Enable debug mode.
+TwitterApiV2Settings.debug = true;
 
 const app = express();
 const port = process.env.PORT || 3000;
